@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet,Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import { withNavigation } from 'react-navigation'; 
 
 class HomeScreen extends React.Component {
@@ -11,7 +12,11 @@ class HomeScreen extends React.Component {
 
         <View>
 
-        <Text>Home</Text>
+        <Button title="Products" style={styles.Button} onPress={() => this.props.navigation.navigate('Products')}></Button>
+        <Button title="Categories" style={styles.Button} onPress={() => this.props.navigation.navigate('Categories')}>Categories</Button>
+        <Button title="Orders" style={styles.Button} onPress={() => this.props.navigation.navigate('Orders')}>Orders</Button>
+
+
         </View>
 
       );
@@ -24,7 +29,7 @@ const styles = StyleSheet.create({
 
     row: {
   
-        flex: 1,
+        flex: 3,
   
         flexDirection: 'row',
   
@@ -34,9 +39,20 @@ const styles = StyleSheet.create({
   
     col: {
   
-        flex: 1,
+        flex: 3,
   
     },
+
+    description: {
+
+        fontSize: 100,
+
+
+    },
+    Button: {
+        flex: 2,
+        marginBottom: 10,
+    }
   
   }); 
 
