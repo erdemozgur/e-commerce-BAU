@@ -2,11 +2,11 @@ import React, {useState,useEffect} from "react";
 import { View,StyleSheet, Text } from "react-native";
 import { Button } from 'react-native-elements'
 import { ScrollView,TouchableOpacity } from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator} from 'react-navigation-stack';
 import props from 'prop-types';
 
-export default function GetProduct(props) {
-    
+export default function GetProduct({navigation}) {
+  
     const [products, setProducts] = useState([]);
     const getProducts = () =>
     {
@@ -28,6 +28,16 @@ export default function GetProduct(props) {
         .then(res => res.text())
         .then(() => { getProducts(); })
       }
+
+    function moveProductDetails(id,supplierId,categoryId,unitsInStock,unitsOnOrder){
+      console.log(unitsOnOrder)
+      navigation.navigate('ProductDetails', {
+      id:id,
+      supplierId:supplierId,
+      categoryId:categoryId,
+      unitsInStock:unitsInStock,
+      unitsOnOrder:unitsOnOrder});
+    }
 
     const styles = StyleSheet.create({
         text: {
@@ -60,10 +70,16 @@ export default function GetProduct(props) {
         });
 
     return (
+      
         <ScrollView>
             {
+              
                 products.map((item) => (
-                    <TouchableOpacity style={styles.bar} onPress={() =>{ this.props.navigation.navigate('ProductDetails',{id:'item.id',supplierId:'item.supplierId',categoryId:'item.categoryId',unitsInStock:'item.unitsInStock',unitsOnOrder:'item.unitsOnOrder',reorderLevel:'item.reorderLevel'})} }>
+                    <TouchableOpacity style={styles.bar} onPress={() => moveProductDetails                          (item.id,
+                    item.supplierId,
+                    item.categoryId,
+                    item.unitsInStock,
+                    item.unitsOnOrder)}>
                         <Text style={styles.text}> Product Name: {item.name}</Text>
                         <Text style={styles.text}> Quantity Per Unit: {item.quantityPerUnit}</Text>
                         <Text style={styles.text}> Unit Price: {item.unitPrice + '$'}</Text>
