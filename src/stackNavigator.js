@@ -4,7 +4,7 @@ import HomeScreen from './views/Home';
 import ProductsScreen from './views/Products';
 import OrdersScreen from './views/Orders';
 import CategoriesScreen from './views/Categories';
-
+import UpdateCategoryScreen from './views/UpdateCategory';
 
 const AppNavigator = createStackNavigator(
 
@@ -31,8 +31,12 @@ const AppNavigator = createStackNavigator(
         Categories: {
             screen: CategoriesScreen,
             navigationOptions: { title: 'Categories'}
+        },
+
+        UpdateCategory: {
+            screen: UpdateCategoryScreen,
+            navigationOptions: { title: 'UpdateCategory'}
         }
-        
 
 
     },

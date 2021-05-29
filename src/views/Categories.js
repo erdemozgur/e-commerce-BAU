@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from "react";
 import { View, Text,FlatList,StyleSheet,ActivityIndicator,SafeAreaView,Button } from "react-native";
-import {Icon } from "react-native-elements";
-import { useNavigation } from 'react-navigation/native';
+import UpdateCategory from "./updateCategory";
+import { createStackNavigator } from 'react-navigation-stack';
 
 
-export default function Categories(){
+export default function Categories({navigation}){
 
     const [data,setData]=useState([]);
     const categoriesUrl ="https://northwind.vercel.app/api/categories"
@@ -34,7 +34,13 @@ export default function Categories(){
         })      
     }
 
-    const navigation = useNavigation();
+    function gotoUpdateCategory(id,description,name){
+        navigation.navigate('UpdateCategory', {
+        id:id,
+        description:description,
+        name:name,});
+      }
+   
 
     return(
         <SafeAreaView>
@@ -46,7 +52,7 @@ export default function Categories(){
             <Text style={styles.categoriesText}>
             {item.id}.{item.description},{item.name}
             <Button onPress={()=> deleteApi(item.id)}></Button>
-            <Button onPress={()=>navigation.navigate("updateCategory")}>Update Categories</Button>
+            <Button onPress={()=>gotoUpdateCategory(item.id,item.description,item.name)}>Update Categories</Button>
             </Text> 
              
             </View>
