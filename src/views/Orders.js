@@ -34,18 +34,18 @@ export default class OrdersScreen extends React.Component {
     renderItemComponent = (data) =>
         <TouchableHighlight style={styles.container}>
            <View style={{ backgroundColor: 'white' }}>
-                <Text>Customer ID: {data.item.customerId}</Text>
-                <Text>Order Date:  {data.item.orderDate}</Text>
-                <Text>Ship Address: </Text>
-                <Text>{data.item.shipAddress.street}</Text> 
-                <Text>{data.item.shipAddress.region}</Text>                            
-                <Text>{data.item.shipAddress.city}</Text>
+           <Text  style={{ fontSize: 22, fontWeight: '700' }} >Order Date:  {data.item.orderDate}</Text>
+                <Text style={{ fontSize: 18, opacity: .7 }}>Customer ID: {data.item.customerId}</Text>
+                <Text style={{ fontSize: 18, fontWeight: '700' }}>Ship Address: </Text>
+                <Text style={{ fontSize: 14, opacity: .6 , color: 'blue'}}>{data.item.shipAddress.street}</Text> 
+                <Text style={{ fontSize: 14, opacity: .6 , color: 'blue'}}>{data.item.shipAddress.region}</Text>                            
+                <Text style={{ fontSize: 14, opacity: .6 , color: 'blue'}}>{data.item.shipAddress.city}</Text>
             </View>
         </TouchableHighlight>
  
     ItemSeparator = () => <View style={{
         height: 2,
-        backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundColor: "rgba(0,0,0,0)",
         marginLeft: 10,
         marginRight: 10,
     }}
@@ -72,10 +72,14 @@ export default class OrdersScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
+    height: 150,
+    width: 500,
     margin: 10,
+    borderRadius: 12,
+    flexDirection: 'row',
+    padding: 10,
     backgroundColor: '#FFF',
-    borderRadius: 6,
+
   },
   image: {
     height: '10%',
