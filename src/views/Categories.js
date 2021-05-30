@@ -18,7 +18,7 @@ export default function Categories({navigation}){
          .catch((error)=>console.error(error))   
     
     }
-
+    
     useEffect(()=>{
         getApi();
     },[]);
@@ -34,27 +34,43 @@ export default function Categories({navigation}){
         })      
     }
 
+
+
     function gotoUpdateCategory(id,description,name){
         navigation.navigate('UpdateCategory', {
         id:id,
         description:description,
         name:name,});
       }
+
+      function gotoAddCategory(){
+        navigation.navigate('AddCategory');
+      }
+   
    
 
     return(
         <SafeAreaView>
         <View style={styles.container}>
+        <View style={{ flex: 1 }}> 
+             <Button title="Add Category" color="#FEE5C6"  style={styles.updateButton} onPress={()=>gotoAddCategory()}>Update Categories</Button>
+            </View>
+          
             <FlatList 
             data={data} keyExtractor={({id},index)=>id}
             renderItem={({item})=>(
             <View style={{paddingBottom:10}}>
             <Text style={styles.categoriesText}>
             {item.id}.{item.description},{item.name}
-            <Button onPress={()=> deleteApi(item.id)}></Button>
-            <Button onPress={()=>gotoUpdateCategory(item.id,item.description,item.name)}>Update Categories</Button>
+           
             </Text> 
-             
+            <View style={{ flex: 1, marginBottom: 10 }}> 
+             <Button  title="Delete Category"  style={styles.deleteButton} onPress={()=> deleteApi(item.id)}>Delete Button</Button>
+             </View>
+            <View style={{ flex: 1 }}> 
+             <Button title="Update Category" color="#FEE5C6"  style={styles.updateButton} onPress={()=>gotoUpdateCategory(item.id,item.description,item.name)}>Update Categories</Button>
+            </View>
+          
             </View>
             )} >
             
@@ -78,5 +94,25 @@ export default function Categories({navigation}){
         categoriesText:{
             fontSize:26,
             fontWeight:"200",
+        },
+        categoriesText:{
+            fontSize:26,
+            fontWeight:"200",
+        },
+        deleteButton:{
+            color:"blue",
+            width: "100px",
+            height:"100px",
+
+        },
+        addButton:{
+            color:"red",
+            width: "100px",
+            height:"100px",
+        },
+        updateButton:{
+            color:"black",
+            width: "100px",
+            height:"100px",
         },
     });
