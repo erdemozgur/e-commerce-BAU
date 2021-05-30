@@ -4,6 +4,8 @@ import HomeScreen from './views/Home';
 import ProductsScreen from './views/Products';
 import OrdersScreen from './views/Orders';
 import CategoriesScreen from './views/Categories';
+import ProductDetailsScreen from './views/ProductDetails';
+
 import UpdateCategoryScreen from './views/UpdateCategory';
 
 const AppNavigator = createStackNavigator(
@@ -31,6 +33,11 @@ const AppNavigator = createStackNavigator(
         Categories: {
             screen: CategoriesScreen,
             navigationOptions: { title: 'Categories'}
+        },
+
+        ProductDetails: {
+            screen: ProductDetailsScreen,
+            navigationOptions: { title: 'ProductDetails'}
         },
 
         UpdateCategory: {
