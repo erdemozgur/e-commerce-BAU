@@ -43,19 +43,30 @@ export default function GetProducts({navigation}) {
         text: {
          fontFamily: 'Helvetica',
          fontSize: 20,
-         color: '#f5fffa',
+         color: '#00000',
+         marginTop:10,
          fontWeight: 'bold',
+         textAlign: 'center',
+         opacity:0.8
+        },
+        text1: {
+         fontFamily: 'Helvetica',
+         fontSize: 15,
+         color: '#50504F',
          textAlign: 'center'
         },
-
         bar: {
-          backgroundColor:'#663399',
+          alignItems:'center',
+          backgroundColor:'#E0EBFE',
           margin:10,
-          borderWidth: 5,
-          borderTopLeftRadius: 40,
-          borderTopRightRadius: 40,
-          borderBottomLeftRadius: 40,
-          borderBottomRightRadius: 40         
+          width:750,
+          borderWidth:2,
+          borderColor: '#50504F',
+          marginLeft:400,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          borderBottomLeftRadius: 30,
+          borderBottomRightRadius: 30         
         },
         Button1: {
           fontFamily: 'Helvetica',
@@ -82,9 +93,9 @@ export default function GetProducts({navigation}) {
                     item.unitsOnOrder,
                     item.reorderLevel)}>
                         <Text style={styles.text}> Product Name: {item.name}</Text>
-                        <Text style={styles.text}> Quantity Per Unit: {item.quantityPerUnit}</Text>
-                        <Text style={styles.text}> Unit Price: {item.unitPrice + ' $'}</Text>
-                        <Button title="Delete Product" style={styles.Button1} onPress={() => deleteProduct(item.id)}></Button>
+                        <Text style={styles.text1}> Quantity Per Unit: {item.quantityPerUnit}</Text>
+                        <Text style={styles.text1}> Unit Price: {item.unitPrice + ' $'}</Text>
+                        <Button title="Delete Product"  style={styles.Button1} onPress={() => deleteProduct(item.id)}></Button>
                     </TouchableOpacity>
                 ))
             }
