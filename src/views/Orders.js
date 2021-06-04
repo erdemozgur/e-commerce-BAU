@@ -34,7 +34,7 @@ export default class OrdersScreen extends React.Component {
     renderItemComponent = (data) =>
         <TouchableHighlight style={styles.container}>
            <View style={{ backgroundColor: 'white' }}>
-           <Text  style={{ fontSize: 22, fontWeight: '700', opacity: .8 }} >Order Date:  {data.item.orderDate}</Text>
+           <Text  style={{ fontSize: 22, fontWeight: '700', opacity: .8 }} >Order Date:  {data.item.orderDate.split(' ')[0]}</Text>
                 <Text style={{ fontSize: 18, opacity: .7 }}>Customer ID: {data.item.customerId}</Text>
                 <Text style={{ fontSize: 18, fontWeight: '700' }}>Ship Address: </Text>
                 <Text style={{ fontSize: 14, opacity: .6 , color: 'blue'}}>{data.item.shipAddress.street}</Text> 
@@ -59,7 +59,7 @@ export default class OrdersScreen extends React.Component {
       return (
         <SafeAreaView>
           <FlatList
-            data={this.state.data.sort((a, b) => b.orderDate > a.orderDate ? 1: -1)}
+            data={this.state.data.sort((a, b) => new Date(b.orderDate.split(' ')[0]) - new Date(a.orderDate.split(' ')[0]))}
             renderItem={item => this.renderItemComponent(item)}
             keyExtractor={item => item.id.toString()}
             ItemSeparatorComponent={this.ItemSeparator}
