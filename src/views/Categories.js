@@ -21,7 +21,8 @@ export default function Categories({navigation}){
     
     useEffect(()=>{
         getApi();
-    },[]);
+        
+    },[ getApi()]);
 
     const deleteApi=(id)=>{
        
