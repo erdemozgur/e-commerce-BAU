@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { View, Text,FlatList,StyleSheet,ActivityIndicator,SafeAreaView,Button } from "react-native";
+import { View, Text,FlatList,StyleSheet,ActivityIndicator,SafeAreaView,Button,TouchableHighlight } from "react-native";
 import UpdateCategory from "./updateCategory";
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -21,7 +21,7 @@ export default function Categories({navigation}){
     
     useEffect(()=>{
         getApi();
-        
+
     },[ getApi()]);
 
     const deleteApi=(id)=>{
@@ -48,38 +48,33 @@ export default function Categories({navigation}){
         navigation.navigate('AddCategory');
       }
    
-   
+
+  
 
     return(
-        <SafeAreaView>
-        <View style={styles.container}>
-        <View style={{ flex: 1 }}> 
-             <Button title="Add Category" color="#FEE5C6"  style={styles.updateButton} onPress={()=>gotoAddCategory()}>Update Categories</Button>
+        <SafeAreaView >
+     
+        <View style={{ flex: 1 ,alignItems:'center'}}> 
+        <Button title="Add Category" color="#636e72"  style={styles.addButton} onPress={()=>gotoAddCategory()}>Add New Categories</Button>
             </View>
-          
-            <FlatList 
-            data={data} keyExtractor={({id},index)=>id}
-            renderItem={({item})=>(
-            <View style={{paddingBottom:10}}>
-            <Text style={styles.categoriesText}>
-            {item.id}.{item.description},{item.name}
-           
-            </Text> 
-            <View style={{ flex: 1, marginBottom: 10 }}> 
-             <Button  title="Delete Category"  style={styles.deleteButton} onPress={()=> deleteApi(item.id)}>Delete Button</Button>
-             </View>
-            <View style={{ flex: 1 }}> 
-             <Button title="Update Category" color="#FEE5C6"  style={styles.updateButton} onPress={()=>gotoUpdateCategory(item.id,item.description,item.name)}>Update Categories</Button>
+            <View style={{ flex: 1 ,alignItems:'center'}}> 
+            <FlatList data={data} keyExtractor={({id},index)=>id} renderItem={({item})=>(
+                <TouchableHighlight style={styles.elements}>
+                <View style={{ backgroundColor: 'white' }}>
+         
+            <Text style={{ fontSize: 14, opacity: .6 , color: 'blue', textAlign:"center"}}> {item.id}</Text> 
+            <Text style={{ fontSize: 14, opacity: .6 , color: 'blue',textAlign:"center"}}> {item.name}</Text> 
+            <Text style={{ fontSize: 14, opacity: .6 , color: 'blue',textAlign:"center"}}> {item.description}</Text> 
+            <Button title="Update Category" color="#a29bfe"  style={styles.updateButton} onPress={()=>gotoUpdateCategory(item.id,item.description,item.name)}>Update Categories</Button>
+            <Button  title="Delete Category" color="#81ecec"  style={styles.deleteButton} onPress={()=> deleteApi(item.id)}>Delete Button</Button>
             </View>
-          
-            </View>
+            </TouchableHighlight>
+    
             )} >
             
             </FlatList>
-        </View>
 
-                
-
+            </View>
         </SafeAreaView>
     );
 
@@ -96,24 +91,27 @@ export default function Categories({navigation}){
             fontSize:26,
             fontWeight:"200",
         },
-        categoriesText:{
-            fontSize:26,
-            fontWeight:"200",
-        },
         deleteButton:{
-            color:"blue",
             width: "100px",
             height:"100px",
-
         },
         addButton:{
-            color:"red",
             width: "100px",
             height:"100px",
         },
         updateButton:{
-            color:"black",
             width: "100px",
             height:"100px",
         },
+        elements: {
+            height: 150,
+            width: 500,
+            margin: 10,
+            borderRadius: 12,
+            padding: 10,
+            backgroundColor: '#FFF',
+          },
+          mainView: {
+            alignItems:'center', 
+          },
     });

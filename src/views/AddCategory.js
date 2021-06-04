@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { View,FlatList,StyleSheet,SafeAreaView,Button ,TextInput} from "react-native";
+import { View,FlatList,StyleSheet,SafeAreaView,Button ,TextInput, Text} from "react-native";
 import UpdateCategory from "./updateCategory";
 import { createStackNavigator } from 'react-navigation-stack';
 import { Icon } from "react-native-elements";
@@ -38,15 +38,19 @@ export default function AddCategory({navigation}){
    }
 
     return(
-        
+        <View style={styles.mainContainer}>
+        <SafeAreaView style={styles.mainContainer}>
               <View style={styles.container}>     
+              <Text>Name</Text>
     <TextInput style={styles.input} onChangeText = {(val) => setName(val)} placeholder = 'Name' />
+            <Text>Description</Text>
     <TextInput style={styles.input} onChangeText = {(val) => setDescription(val)} placeholder = 'Description' />
-       <Button color='#517fa4' onPress={()=>submit()}>Add New Category</Button>
+       <Button title= "Add New Category" color='#517fa4' onPress={()=>submit()}>Add New Category</Button>
 
                </View> 
-         
-       
+        
+               </SafeAreaView>
+               </View>
     );
 
     };
@@ -55,9 +59,16 @@ export default function AddCategory({navigation}){
         container:{
             flex:1,
             justifyContent:"center",
-            backgroundColor:"#fff",
+            backgroundColor:'white',
+            alignItems:'center',
+            borderRadius:16,
+            
 
         },
+        mainContainer:{
+            backgroundColor:'white',
+        },
+
         categoriesText:{
             fontSize:26,
             fontWeight:"200",
