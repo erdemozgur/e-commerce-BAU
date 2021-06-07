@@ -1,5 +1,5 @@
 
-Erdem Özgür 1604576 | Semih Özgür 1600298 | Eray Yayla 1722193
+Erdem Özgür 1604576 | Semih Özsoy 1600298 | Eray Yayla 1722193
 
 E-Commerce Project Written By React Navite Language.
 Fetching Products, Categories, Orders | Updating and deleting categories
